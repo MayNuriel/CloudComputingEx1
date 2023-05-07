@@ -1,0 +1,191 @@
+create key pair cloud-course-156346400.pem to connect to instances and save locally
+setup firewall my-sg-907786200
+{
+    "GroupId": "sg-05d0d208ecfd9af82"
+}
+My IP: 212.143.28.21
+setup rule allowing SSH access to 212.143.28.21 only
+{
+    "Return": true,
+    "SecurityGroupRules": [
+        {
+            "SecurityGroupRuleId": "sgr-0ba8adfba38f45034",
+            "GroupId": "sg-05d0d208ecfd9af82",
+            "GroupOwnerId": "816505643390",
+            "IsEgress": false,
+            "IpProtocol": "tcp",
+            "FromPort": 22,
+            "ToPort": 22,
+            "CidrIpv4": "212.143.28.21/32"
+        }
+    ]
+}
+setup rule allowing HTTP (port 5000) access to all IPs
+{
+    "Return": true,
+    "SecurityGroupRules": [
+        {
+            "SecurityGroupRuleId": "sgr-0f1846906f93c51d3",
+            "GroupId": "sg-05d0d208ecfd9af82",
+            "GroupOwnerId": "816505643390",
+            "IsEgress": false,
+            "IpProtocol": "tcp",
+            "FromPort": 5000,
+            "ToPort": 5000,
+            "CidrIpv4": "0.0.0.0/0"
+        }
+    ]
+}
+Creating Ubuntu 20.04 instance...
+Waiting for instance creation...
+New instance i-0e2bd7b1417e88d33 @ 44.212.35.126
+deploying code to production
+setup production environment
+Welcome to Ubuntu 20.04.2 LTS (GNU/Linux 5.4.0-1038-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Sat May  6 11:47:19 UTC 2023
+
+  System load:  0.3               Processes:             113
+  Usage of /:   16.5% of 7.69GB   Users logged in:       0
+  Memory usage: 23%               IPv4 address for ens5: 172.31.92.210
+  Swap usage:   0%
+
+
+1 update can be installed immediately.
+0 of these updates are security updates.
+To see these additional updates run: apt list --upgradable
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+New release '22.04.2 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Hit:1 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal InRelease
+Get:2 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-updates InRelease [114 kB]
+Get:3 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-backports InRelease [108 kB]
+Get:4 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal/universe amd64 Packages [8628 kB]
+Get:5 http://security.ubuntu.com/ubuntu focal-security InRelease [114 kB]
+Get:6 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal/universe Translation-en [5124 kB]
+Get:7 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal/universe amd64 c-n-f Metadata [265 kB]
+Get:8 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal/multiverse amd64 Packages [144 kB]
+Get:9 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal/multiverse Translation-en [104 kB]
+Get:10 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal/multiverse amd64 c-n-f Metadata [9136 B]
+Get:11 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-updates/main amd64 Packages [2530 kB]
+Get:12 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-updates/main Translation-en [427 kB]
+Get:13 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-updates/main amd64 c-n-f Metadata [16.4 kB]
+Get:14 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-updates/restricted amd64 Packages [1826 kB]
+Get:15 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-updates/restricted Translation-en [257 kB]
+Get:16 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-updates/restricted amd64 c-n-f Metadata [636 B]
+Get:17 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-updates/universe amd64 Packages [1054 kB]
+Get:18 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-updates/universe Translation-en [249 kB]
+Get:19 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-updates/universe amd64 c-n-f Metadata [24.2 kB]
+Get:20 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-updates/multiverse amd64 Packages [25.2 kB]
+Get:21 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-updates/multiverse Translation-en [7408 B]
+Get:22 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-updates/multiverse amd64 c-n-f Metadata [612 B]
+Get:23 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-backports/main amd64 Packages [45.7 kB]
+Get:24 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-backports/main Translation-en [16.3 kB]
+Get:25 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-backports/main amd64 c-n-f Metadata [1420 B]
+Get:26 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-backports/restricted amd64 c-n-f Metadata [116 B]
+Get:27 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-backports/universe amd64 Packages [24.9 kB]
+Get:28 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-backports/universe Translation-en [16.3 kB]
+Get:29 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-backports/universe amd64 c-n-f Metadata [880 B]
+Get:30 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-backports/multiverse amd64 c-n-f Metadata [116 B]
+Get:31 http://security.ubuntu.com/ubuntu focal-security/main amd64 Packages [2146 kB]
+Get:32 http://security.ubuntu.com/ubuntu focal-security/main Translation-en [345 kB]
+Get:33 http://security.ubuntu.com/ubuntu focal-security/main amd64 c-n-f Metadata [12.5 kB]
+Get:34 http://security.ubuntu.com/ubuntu focal-security/restricted amd64 Packages [1719 kB]
+Get:35 http://security.ubuntu.com/ubuntu focal-security/restricted Translation-en [242 kB]
+Get:36 http://security.ubuntu.com/ubuntu focal-security/restricted amd64 c-n-f Metadata [640 B]
+Get:37 http://security.ubuntu.com/ubuntu focal-security/universe amd64 Packages [829 kB]
+Get:38 http://security.ubuntu.com/ubuntu focal-security/universe Translation-en [167 kB]
+Get:39 http://security.ubuntu.com/ubuntu focal-security/universe amd64 c-n-f Metadata [17.6 kB]
+Get:40 http://security.ubuntu.com/ubuntu focal-security/multiverse amd64 Packages [22.9 kB]
+Get:41 http://security.ubuntu.com/ubuntu focal-security/multiverse Translation-en [5488 B]
+Get:42 http://security.ubuntu.com/ubuntu focal-security/multiverse amd64 c-n-f Metadata [540 B]
+Fetched 26.6 MB in 4s (6706 kB/s)
+Reading package lists...
+Building dependency tree...
+Reading state information...
+246 packages can be upgraded. Run 'apt list --upgradable' to see them.
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  javascript-common libjs-jquery python3-itsdangerous python3-pyinotify
+  python3-werkzeug
+Suggested packages:
+  apache2 | lighttpd | httpd python-flask-doc python-pyinotify-doc ipython3
+  python-werkzeug-doc python3-lxml python3-termcolor python3-watchdog
+The following NEW packages will be installed:
+  javascript-common libjs-jquery python3-flask python3-itsdangerous
+  python3-pyinotify python3-werkzeug
+0 upgraded, 6 newly installed, 0 to remove and 246 not upgraded.
+Need to get 638 kB of archives.
+After this operation, 2296 kB of additional disk space will be used.
+Get:1 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal/main amd64 javascript-common all 11 [6066 B]
+Get:2 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal/main amd64 libjs-jquery all 3.3.1~dfsg-3 [329 kB]
+Get:3 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal/main amd64 python3-itsdangerous all 1.1.0-1 [14.6 kB]
+Get:4 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal-updates/main amd64 python3-werkzeug all 0.16.1+dfsg1-2ubuntu0.1 [183 kB]
+Get:5 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal/main amd64 python3-flask all 1.1.1-2 [80.3 kB]
+Get:6 http://us-east-1.ec2.archive.ubuntu.com/ubuntu focal/main amd64 python3-pyinotify all 0.9.6-1.2ubuntu1 [24.8 kB]
+Fetched 638 kB in 0s (14.6 MB/s)
+Selecting previously unselected package javascript-common.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 60092 files and directories currently installed.)
+Preparing to unpack .../0-javascript-common_11_all.deb ...
+Unpacking javascript-common (11) ...
+Selecting previously unselected package libjs-jquery.
+Preparing to unpack .../1-libjs-jquery_3.3.1~dfsg-3_all.deb ...
+Unpacking libjs-jquery (3.3.1~dfsg-3) ...
+Selecting previously unselected package python3-itsdangerous.
+Preparing to unpack .../2-python3-itsdangerous_1.1.0-1_all.deb ...
+Unpacking python3-itsdangerous (1.1.0-1) ...
+Selecting previously unselected package python3-werkzeug.
+Preparing to unpack .../3-python3-werkzeug_0.16.1+dfsg1-2ubuntu0.1_all.deb ...
+Unpacking python3-werkzeug (0.16.1+dfsg1-2ubuntu0.1) ...
+Selecting previously unselected package python3-flask.
+Preparing to unpack .../4-python3-flask_1.1.1-2_all.deb ...
+Unpacking python3-flask (1.1.1-2) ...
+Selecting previously unselected package python3-pyinotify.
+Preparing to unpack .../5-python3-pyinotify_0.9.6-1.2ubuntu1_all.deb ...
+Unpacking python3-pyinotify (0.9.6-1.2ubuntu1) ...
+Setting up javascript-common (11) ...
+Setting up python3-pyinotify (0.9.6-1.2ubuntu1) ...
+Setting up python3-itsdangerous (1.1.0-1) ...
+Setting up libjs-jquery (3.3.1~dfsg-3) ...
+Setting up python3-werkzeug (0.16.1+dfsg1-2ubuntu0.1) ...
+Setting up python3-flask (1.1.1-2) ...
+
+--------------------------------------------
+
+Done successfuly !! 
+testing the endpoints by the following examples:
+
+The result of running the command:curl -X POST "http://$PUBLIC_IP_OF_MY_INSTANCE:5000/entry?plate=123-123-123&parkingLot=382" is:
+
+            your ticket ID is: 1
+
+The result of running the command:curl -X POST "http://$PUBLIC_IP_OF_MY_INSTANCE:5000/exit?ticketId=1" is:
+
+            license plate: 123-123-123,
+            time parked in minutes: 0.0,
+            parking lot id: 382,
+            charge: 2.5$
+            Goodbye !!! 
+
+The result of running the command:curl -X POST "http://$PUBLIC_IP_OF_MY_INSTANCE:5000/entry?plate=444-555-969&parkingLot=22" is:
+
+            your ticket ID is: 2
+
+The result of running the command:curl -X POST "http://$PUBLIC_IP_OF_MY_INSTANCE:5000/exit?ticketId=2" is:
+
+            license plate: 444-555-969,
+            time parked in minutes: 0.0,
+            parking lot id: 22,
+            charge: 2.5$
+            Goodbye !!! 
