@@ -11,6 +11,6 @@ The app is written in Python, using Flask.
 
 The bash script which deploys the code to the cloud is: "setup.sh"
 The app is: "app.py"
-In addition, you can see the output example of "setup.sh" file at "output.txt"
+In addition, you can see the output example of "setup.sh" file (include output examples of car's insertion and extraction to poarking lot) at "output.txt"
 
 
